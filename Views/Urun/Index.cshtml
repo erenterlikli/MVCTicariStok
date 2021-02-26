@@ -1,0 +1,67 @@
+﻿@using MVCStok.Models.Entity;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<Urunler>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered" id="tbl1">
+    <thead>
+        <tr>
+            <th>ÜRÜN ID</th>
+            <th>ÜRÜN AD</th>
+            <th>ÜRÜN KATEGORİ</th>
+            <th>FİYATI</th>
+            <th>MARKA</th>
+            <th>STOK</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var urn in Model)
+        {
+            <tr>
+                <td>@urn.UrunId</td>
+                <td>@urn.UrunAd</td>
+                <td>@urn.Kategoriler.KategoriAd</td>
+                <td>@urn.Fiyat</td>
+                <td>@urn.Marka</td>
+                <td>@urn.Stok</td>
+                <td><a href="/Urun/Sil/@urn.UrunId" class="btn btn-danger" onclick="return confirm('Silmek İstediğinize Emin Misiniz?')">SİL</a></td>
+                <td><a href="/Urun/UrunGetir/@urn.UrunId" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+
+<br />
+<a href="/Urun/YeniUrun" class="btn btn-primary">YENİ ÜRÜN EKLE</a>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+<script>
+    $('#tbl1').DataTable({
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+
+        }
+    });
+        
+    
+</script>

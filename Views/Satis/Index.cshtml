@@ -1,0 +1,57 @@
+﻿@model MVCStok.Models.Entity.Satis
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Satış Yap
+</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Satış Paneli</h2>
+            </div>
+            <form method="post" action="/Satis/YeniSatis">
+                <div class="modal-body">
+
+                    <label>Ürün:</label>
+                    @Html.TextBoxFor(m => m.Urun, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Urun, "", new { @style = "color:red" })
+                    <br />
+
+                    <label>Müşteri:</label>
+                    @Html.TextBoxFor(m => m.Musteri, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Musteri, "", new { @style = "color:red" })
+                    <br />
+
+                    <label>Adet:</label>
+                    @Html.TextBoxFor(m => m.Adet, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Adet, "", new { @style = "color:red" })
+                    <br />
+
+                    <label>Fiyat:</label>
+                    @Html.TextBoxFor(m => m.Fiyat, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Fiyat, "", new { @style = "color:red" })
+                    <br />
+
+                    <button class="btn btn-info" type="submit" id="btn7">Satışı Onayla</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">İptal Et</button>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    $('#btn7').click(function () {
+        alert('Satış Onaylandı!');
+    });
+</script>
+
+
+    

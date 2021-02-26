@@ -1,0 +1,45 @@
+﻿@model MVCStok.Models.Entity.Urunler
+@{
+    ViewBag.Title = "UrunGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Urun", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m=>m.UrunId)
+        @Html.TextBoxFor(m=>m.UrunId, new { @class="form-control"})
+        <br />
+
+        @Html.LabelFor(m=>m.UrunAd)
+        @Html.TextBoxFor(m=>m.UrunAd, new { @class="form-control"})
+        <br />
+
+        @Html.LabelFor(m=>m.UrunKategori)
+        @Html.DropDownListFor(m=>m.Kategoriler.KategoriId, (List<SelectListItem>)ViewBag.deg, new { @class = "form-control" })
+        <br />
+
+        @Html.LabelFor(m=>m.Fiyat)
+        @Html.TextBoxFor(m=>m.Fiyat, new { @class="form-control"})
+        <br />
+
+        @Html.LabelFor(m=>m.Marka)
+        @Html.TextBoxFor(m=>m.Marka, new { @class="form-control"})
+        <br />
+
+        @Html.LabelFor(m=>m.Stok)
+        @Html.TextBoxFor(m => m.Stok, new { @class="form-control"})
+        <br />
+
+    </div>
+
+    <div>
+        <button class="btn btn-warning" id="btn6">ÜRÜN GÜNCELLE</button>
+    </div>
+    <script>
+        $('#btn6').click(function () {
+            alert('Güncelleme İşlemi Başarıyla Gerçekleştirildi!');
+        });
+    </script>
+}
+
